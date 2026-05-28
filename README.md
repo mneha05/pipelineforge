@@ -10,7 +10,7 @@ data — `filter`, `derive` (with a hand-written expression parser), `aggregate`
 `join`, `sort`, `validate` — and the *exact same engine* runs in the browser **and**
 in a serverless API route. Build once, run anywhere.
 
-
+**Live demo:** [pipelineforge.vercel.app](https://pipelineforge-rosy.vercel.app/)
 ---
 
 ## The starter pipeline
