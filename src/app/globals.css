@@ -1,0 +1,66 @@
+:root {
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Public Sans', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --paper: #f4f1ea;
+  --ink: #14110c;
+  --line: #d9d2c4;
+  --blueprint: #1b3a8f;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0; padding: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: #1b3a8f; color: #fff; }
+
+::-webkit-scrollbar { width: 11px; height: 11px; }
+::-webkit-scrollbar-track { background: #ece7da; }
+::-webkit-scrollbar-thumb { background: #cdc4b2; border-radius: 6px; border: 2px solid #ece7da; }
+::-webkit-scrollbar-thumb:hover { background: #b8ad96; }
+
+/* blueprint dot-grid for the canvas */
+.blueprint {
+  background-color: #f8f6f0;
+  background-image:
+    radial-gradient(circle, rgba(27,58,143,0.16) 1px, transparent 1px);
+  background-size: 26px 26px;
+}
+
+@keyframes flow {
+  to { stroke-dashoffset: -14; }
+}
+.edge-live { stroke-dasharray: 6 8; animation: flow 0.7s linear infinite; }
+
+@keyframes pop {
+  from { opacity: 0; transform: scale(0.96) translateY(6px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+.pop { animation: pop 0.25s cubic-bezier(0.16,1,0.3,1) both; }
+
+@keyframes blink { 50% { opacity: 0.35; } }
+.running { animation: blink 0.9s ease-in-out infinite; }
+
+.tnum { font-variant-numeric: tabular-nums; }
+
+.btn {
+  cursor: pointer; font-family: var(--font-body); font-weight: 600;
+  border: 1.5px solid var(--ink); background: #fff; color: var(--ink);
+  padding: 8px 16px; border-radius: 2px; font-size: 13.5px;
+  box-shadow: 3px 3px 0 var(--ink); transition: transform .08s, box-shadow .08s;
+}
+.btn:hover { transform: translate(-1px,-1px); box-shadow: 4px 4px 0 var(--ink); }
+.btn:active { transform: translate(2px,2px); box-shadow: 1px 1px 0 var(--ink); }
+.btn:disabled { opacity: 0.45; cursor: not-allowed; box-shadow: 3px 3px 0 var(--ink); transform: none; }
+.btn-run { background: #e8582c; color: #fff; }
+.btn-go { background: #1b3a8f; color: #fff; }
