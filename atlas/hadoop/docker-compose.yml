@@ -1,0 +1,38 @@
+services:
+  namenode:
+    image: apache/hadoop:3.4.1
+    hostname: namenode
+    command: ["hdfs", "namenode"]
+    ports:
+      - "9870:9870"
+      - "9000:9000"
+    environment:
+      ENSURE_NAMENODE_DIR: "/tmp/hadoop-root/dfs/name"
+    volumes:
+      - namenode:/tmp/hadoop-root/dfs/name
+
+  datanode:
+    image: apache/hadoop:3.4.1
+    hostname: datanode
+    command: ["hdfs", "datanode"]
+    depends_on: [namenode]
+    environment:
+      CORE-SITE.XML_fs.defaultFS: "hdfs://namenode:9000"
+    volumes:
+      - datanode:/tmp/hadoop-root/dfs/data
+
+  hive:
+    image: apache/hive:4.0.1
+    depends_on: [namenode, datanode]
+    ports:
+      - "10000:10000"
+      - "10002:10002"
+    environment:
+      SERVICE_NAME: hiveserver2
+      HIVE_CUSTOM_CONF_DIR: /hive_custom_conf
+    volumes:
+      - ./hive:/hive_custom_conf:ro
+
+volumes:
+  namenode:
+  datanode:
