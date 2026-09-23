@@ -7,11 +7,13 @@ on:
       - "src/app/atlas/**"
       - "src/app/api/atlas/**"
       - ".github/workflows/atlas-ci.yml"
+      - "package.json"
   pull_request:
     paths:
       - "atlas/**"
       - "src/app/atlas/**"
       - "src/app/api/atlas/**"
+      - "package.json"
 
 jobs:
   raft:
@@ -31,6 +33,5 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: npm
-      - run: npm ci
+      - run: npm install
       - run: npm run build
