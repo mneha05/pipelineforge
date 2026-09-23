@@ -1,0 +1,16 @@
+name: PipelineForgeMobile
+options:
+  bundleIdPrefix: com.nehamahesh
+targets:
+  PipelineForgeMobile:
+    type: application
+    platform: iOS
+    deploymentTarget: "17.0"
+    sources:
+      - PipelineForgeMobile
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.nehamahesh.pipelineforge
+        SWIFT_OBJC_BRIDGING_HEADER: PipelineForgeMobile/PipelineForgeMobile-Bridging-Header.h
+        INFOPLIST_KEY_UILaunchScreen_Generation: true
+        INFOPLIST_KEY_UIApplicationSceneManifest_Generation: true
