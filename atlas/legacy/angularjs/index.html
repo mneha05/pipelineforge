@@ -1,0 +1,25 @@
+<!doctype html>
+<html ng-app="atlasLegacy">
+<head>
+  <meta charset="utf-8" />
+  <title>Atlas Legacy Console</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
+  <script src="app.js"></script>
+  <style>
+    body { font-family: ui-monospace, monospace; background:#090b10; color:#e4e4e7; margin:40px; }
+    .card { border:1px solid #27272a; border-radius:14px; padding:18px; margin:12px 0; }
+    .ok { color:#34d399; } button { padding:9px 14px; }
+  </style>
+</head>
+<body ng-controller="ClusterController as vm">
+  <h1>PipelineForge / AngularJS compatibility console</h1>
+  <button ng-click="vm.refresh()">refresh</button>
+  <div class="card" ng-if="vm.snapshot">
+    <div class="ok">API ONLINE</div>
+    <p>ingest: {{ vm.snapshot.telemetry.ingestPerSec | number }}/s</p>
+    <p>p95: {{ vm.snapshot.telemetry.p95Ms }} ms</p>
+    <p>raft term: {{ vm.snapshot.telemetry.raftTerm }}</p>
+  </div>
+  <p ng-if="vm.error">{{ vm.error }}</p>
+</body>
+</html>
