@@ -252,6 +252,16 @@ atlas/legacy/
 
 The AngularJS example performs a real `$http` request against the Atlas API. The SproutCore example shows the framework's application namespace, controller and page/view model.
 
+## Telecom analytics lab — CarrierPulse
+
+`telecom/` adds a carrier-data analytics workload on top of the existing Hadoop/HDFS/Hive lane. It generates **synthetic CDR and network-event data**, computes tower/day reliability KPIs with Hadoop Streaming, analyzes subscriber behavior, and includes **Teradata-dialect warehouse DDL/SQL** with Primary Indexes, date partitioning, `COLLECT STATISTICS`, `QUALIFY`, and window functions.
+
+Key metrics include dropped-call rate, p95 latency, jitter, packet loss, handover failures, traffic volume, usage segmentation, and subscriber experience-risk signals.
+
+> Data is synthetic and the Teradata artifacts are dialect-specific SQL; this repository does not claim access to AT&T production data or a production Teradata appliance.
+
+See **[`telecom/README.md`](telecom/README.md)** for the architecture and commands.
+
 ## Original PipelineForge engine
 
 Atlas sits on top of the existing visual ETL engine rather than replacing it.
