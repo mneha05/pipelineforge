@@ -1,0 +1,28 @@
+name: telecom-ci
+
+on:
+  push:
+    paths:
+      - "telecom/**"
+      - ".github/workflows/telecom-ci.yml"
+  pull_request:
+    paths:
+      - "telecom/**"
+      - ".github/workflows/telecom-ci.yml"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: telecom
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install -r requirements.txt
+      - run: pytest -q tests
+      - run: python data/generate_synthetic_cdr.py --rows 5000 --out data/cdr.csv
+      - run: python analytics/network_quality.py data/cdr.csv
+      - run: python analytics/subscriber_segments.py data/cdr.csv
